@@ -1,0 +1,59 @@
+<script>
+    var nombre = prompt("¿Cual es tu nombre?");
+    var personas = [];
+    var p1 = [];
+    var total = 0;
+    var nombre1 = "";
+    var cantidad = 0;
+    var p = 0;
+    var t = 0;
+
+    registrar();
+    console.log(personas[0]);
+
+    function cuanto (){
+        t = cantidad / p;
+    }
+    
+    function registrar (){
+        nombre1 = prompt("Ingresa el nombre de la persona que solicita el prestamo");
+        cantidad = parseInt(prompt("Ingresa la cantidad del prestamo"));
+        plazos = parseInt(prompt("¿Lo pagaras en plazos o de contado?" + "\n" + "Presiona:" + "\n" + "1. Pagar por plazos" + "\n" + "2.Pagar al contado"));
+        switch(plazos){
+            case 1:
+                plazos1();
+                cuanto();
+                break;
+
+            case 2:
+                contado();
+                break;
+        }
+        var arreglo = {
+            "Nombre": nombre1,
+            "Cantidad prestada" : cantidad,
+            "Plazos" : p,
+            "Cantidad a pagar por plazos" : t,
+            "Cantidad a deuda" : (cantidad - total),
+        }
+        personas.push(arreglo);
+    }
+
+    function plazos1 (){
+        p = parseInt(prompt("¿A cuantos meses consideras pagar el prestamo?"));
+    }
+
+    function contado(){
+        plazos = 1;
+        do{
+        var c = parseInt(prompt("Confirmar pago total (Ingresa la cantidad a pagar)"));
+        if(c == cantidad){
+            alert("Se ha realizado tu pago con exito");
+            total = c;
+        }else{
+            alert("Su pago fue rechazado por ya que no es igual a la cantidad prestada");
+        }
+    }while(c == cantidad);
+    }
+
+</script>
