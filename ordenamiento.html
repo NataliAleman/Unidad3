@@ -1,0 +1,19 @@
+<script>
+    function ordenar (arreglo) {
+        if(arreglo.length <1){
+            return [];
+        }
+        var derecha = [];
+        var izquierda = [];
+        var inicio = arreglo[0];
+        for(var i = 1; i < arreglo.length; i++){
+            if(arreglo[i] < inicio){
+                izquierda.push(arreglo[i]);
+            }else{
+                derecha.push(arreglo[i]);
+            }
+        }
+        return ordenar(izquierda).concat(inicio, ordenar(derecha));
+    }
+    console.log(ordenar([5,3,65, 5, 6, 14, 8, 78, 10]));
+</script>
