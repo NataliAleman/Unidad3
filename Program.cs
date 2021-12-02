@@ -1,67 +1,66 @@
 ﻿using System;
-public class AhorcadoNatali
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ConsoleApplication15
 {
-    public static void Main()
+    class Calculadora //Nombre de nuestra clase.
     {
-        //el usuario ingresa el numero de letras que tiene su palabra e ingresa su palabra
-        string palabra;
-        int n;
-        Console.WriteLine("Bienvenido por favor ingresa cuantas letras tiene tu palabra, e incluye espacios si es que los lleva");
-        n = Convert.ToInt32(Console.ReadLine());
-        Console.WriteLine("Ingrese la palabra para que el otro jugardo intente adivinarla");
-        palabra = Console.ReadLine();
-        // En mi caso la palabra se muestra con una serie de guiones -----
-        string mostrarpalabra = "";
-        for (int i = 0; i < n; i++)
+        static void Main(string[] args)
         {
-            if (palabra[i] == ' ')
-                mostrarpalabra = mostrarpalabra + " ";
-            else
-                mostrarpalabra = mostrarpalabra + " - ";
+            Console.Title = "Mini Calculadora - Natali Alemán"; //Sirve para agregarle un titulo a la ventana
+            string resp = "";
+            do
+            {
+                int valor1 = 0; //Aqui se almacenara el primer valor ingresado.
+                int valor2 = 0; //Aqui se almacenara el segundo valor ingresado.
+                int R = 0; //Aqui se almacenara el resultado de la operacion.
+
+                //Aqui mostraremos los mensajes que apareceran en nuestra consola igual que el menu de seleccion.
+                Console.WriteLine("Presione el simbolo para realizar la operacion:n");
+                Console.WriteLine("+ para sumar");
+                Console.WriteLine("- para restar");
+                Console.WriteLine("* para multiplicar");
+                Console.WriteLine("/ para dividir");
+                Console.Write("n Eliga Una Opcion: "); //Aqui es donde indicaremos que operacion vamos a realizar
+                
+                string eleccion = Convert.ToString(resp);
+                //Aqui se agregaran los mensajes para poder ingresar los datos.
+                Console.WriteLine("nIngrese sus dos numerosn");
+                Console.Write("Valor1: ");
+               
+                Console.Write("Valor2: ");
+                
+                Console.WriteLine();
+
+                switch (eleccion)
+                {
+                    case "+":
+                        Console.WriteLine("El resultado de la suma es:");
+                        R = valor1 + valor2;
+                        Console.WriteLine("{0} + {1} = {2}", valor1, valor2, R);
+                        break;
+                    case "-":
+                        Console.WriteLine("El resultado de la resta es:");
+                        R = valor1 - valor2;
+                        Console.WriteLine("{0} - {1} = {2}", valor1, valor2, R);
+                        break;
+                    case "*":
+                        Console.WriteLine("El resultado de la multiplicacion es:");
+                        R = valor1 * valor2;
+                        Console.WriteLine("{0} * {1} = {2}", valor1, valor2, R);
+                        break;
+                    case "/":
+                        Console.WriteLine("El resultado de la division es:");
+                        R = valor1 / valor2;
+                        Console.WriteLine("{0} / {1} = {2}", valor1, valor2, R);
+                        break;
+                }
+                Console.Write("n¿Desea Continuar? s/n: "); //Si para realizarlo de nuevo y no para salir.
+              
+            }
+            while (resp == "s" || resp == "s");
         }
-        //variables
-        int fallosrestantes = 5;
-        char letractual;
-        bool terminado = false;
-
-        //estructura do while para las oportunidades de la persona
-        do
-        {
-            //se muestra la palabra oculta y el usuario intenta adivinar con una letra
-            Console.WriteLine("Palabra oculta: {0}", mostrarpalabra);
-            Console.WriteLine("Tus oportunidades restantes son: {0}", fallosrestantes);
-
-            //el usuario elige otra letra
-            Console.WriteLine("Por favor, introduzca otra letra");
-            letractual = Convert.ToChar(Console.ReadLine());
-
-            //si la letra no es parte de la palabra a adivinar el jugador perdera una oportunidad de las 5 que tiene
-            if (palabra.IndexOf(letractual) == -1)
-                fallosrestantes--;
-            // si la letra es parte de la palabra se mostrara en los lugares de la palabra correspondiente, por lo cual no se pierde ninguna oportunidad de las 5 que tiene
-            string Mostrarsiguiente = "";
-            for (int i = 0; i < n; i++)
-            {
-                if (letractual == palabra[i])
-                    Mostrarsiguiente = Mostrarsiguiente + letractual;
-                else
-                    Mostrarsiguiente = Mostrarsiguiente + mostrarpalabra[i];
-            }
-            mostrarpalabra = Mostrarsiguiente;
-            // si se adivino la palabra o si de plano el usuario ya no tiene intentos
-            if (mostrarpalabra.IndexOf("-") < 0)
-            {
-                Console.WriteLine("Felicidades, la palabra que adivinaste es: {0}", palabra);
-                terminado = true;
-            }
-            if (fallosrestantes == 0)
-            {
-                Console.WriteLine("Perdiste tus intentos la palabra para adivinar era: {0}", palabra);
-                terminado = true;
-            }
-            Console.WriteLine();
-        }
-        while (!terminado);
-        Console.ReadKey();
     }
 }
